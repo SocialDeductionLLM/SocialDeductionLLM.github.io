@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-05-28 Tue 15:15 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Training Language Models for Social Deduction with Multi-Agent Reinforcement Learning</title>
+<meta name="author" content="Bidipta Sarkar" />
+<meta name="description" content="Training Language Models for Social Deduction with Multi-Agent Reinforcement Learning" />
+<meta name="keywords" content="homepage, website, research, AI" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+<script src="js/app.js"></script>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<div id="main" class="container">
+
+
+<p>
+<div class="row"><h2 class="col-md-12 text-center"><strong><font size="+4r">  Training Language Models for Social Deduction with Multi-Agent Reinforcement Learning </font></strong></h2></div><br />
+</p>
+
+
+<div class="row"> <div class="col-md-12 text-center">
+<ul class="org-ul list-inline">
+<li>Bidipta Sarkar<br /></li>
+<li>Warren Xia<br /></li>
+<li>C. Karen Liu<br /></li>
+<li>Dorsa Sadigh<br /></li>
+</ul>
+
+</div> </div>
+
+
+<div class="row"> <div class="col-md-12 text-center">
+<ul class="org-ul list-inline">
+<li><image src="imgs/stanford_logo.png" height="48px"><br /></li>
+<li><image src="imgs/iliad.png" height="48px"><br /></li>
+<li><image src="imgs/tml.png" height="48px"><br /></li>
+</ul>
+</div> </div>
+
+<div class="row"> <div class="col-md-4 col-md-offset-4 text-center">
+<ul class="org-ul nav nav-pills nav-justified">
+<li><a href="pdfs/paper.pdf"><image src="imgs/paper_front.jpg" height="60px"><h4><strong>Paper</strong></h4></a><br /></li>
+<li><image src="imgs/huggingface.svg" height="60px"><h4><strong>Models (Coming Soon!)</strong></h4><br /></li>
+<li><a href="https://github.com/SocialDeductionLLM"><image src="imgs/GitHub-Mark.png" height="60px"><h4><strong>Code</strong></h4></a><br /></li>
+</ul>
+</div></div>
+
+<div class="row"> <div class="col-md-8 col-md-offset-2">
+
+<p>
+<video width="100%" autoplay loop muted> <source src="imgs/Amongus.mp4" type="video/mp4"> </video><br />
+</p>
+
+<div id="outline-container-org4507342" class="outline-2">
+<h2 id="org4507342"></h2>
+<div class="outline-text-2" id="text-org4507342">
+</div>
+<div id="outline-container-org99c00fd" class="outline-3">
+<h3 id="org99c00fd">Abstract</h3>
+<div class="outline-text-3" id="text-org99c00fd">
+<p>
+Communicating in natural language is a powerful tool in multi-agent settings, as it enables independent agents to share information in partially observable settings and allows zero-shot coordination with humans. However, most prior work in multi-agent RL are limited as they either rely on training with large amounts of human demonstrations or lack the ability to generate natural and useful communication strategies. In this work, we train language models to have productive discussions about their environment in natural language without the need for any human demonstrations. We decompose the communication problem into <i>listening</i> and <i>speaking</i>. Our key idea is to leverage the agent's goal to <i>predict useful information about the world</i> as a dense reward signal that guides the communication. Specifically, we improve a model's listening skills by training them to predict information about the environment based on discussions, and we simultaneously improve a model's speaking skills with multi-agent reinforcement learning by rewarding messages that allow other agents to answer questions about the environment. To investigate the role and necessity of communication in complex social settings, we study an embodied social deduction game based on Among Us, where the key question to answer is the identity of an adversarial imposter. We analyze emergent behaviors due to our technique, such as accusing suspects and providing evidence, and find that it enables strong discussions, doubling the win rates compared to standard RL.<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgab7cca9" class="outline-3">
+<h3 id="orgab7cca9">Among Us Environment</h3>
+<div class="outline-text-3" id="text-orgab7cca9">
+
+<div id="orgcac7cf3" class="figure">
+<p><img src="./imgs/AmongUsDiagrams.png" alt="AmongUsDiagrams.png" width="100%" /><br />
+</p>
+</div>
+
+<p>
+To investigate a challenging and grounded social deduction game, we implement a token-based hidden role game based on Among Us. Our game features two phases: an embodied gameplay phase and a free-form discussion phase. During the gameplay phase, agents navigate a 2D grid environment, with crewmates completing tasks and imposters killing crewmates. The discussion phase begins when a player reports the corpse of a player killed by the imposter. During the discussion phase, each player generates free-form messages and votes for a player to remove from the game.<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6227c85" class="outline-3">
+<h3 id="org6227c85">Our Technique</h3>
+<div class="outline-text-3" id="text-org6227c85">
+<p>
+We train crewmates to improve their discussion abilities. To do so, we decompose discussions into two components: listening and speaking.<br />
+</p>
+</div>
+
+<div id="outline-container-org2c19436" class="outline-4">
+<h4 id="org2c19436">Listening</h4>
+<div class="outline-text-4" id="text-org2c19436">
+<p>
+We want crewmates to be able to accurately predict the identity of the imposter given prior messages and interactions with the environment. Therefore, we minimize the following loss to improve listening in a calibrated fashion:<br />
+</p>
+
+\begin{equation}
+L_\text{L}(\pi, \tau^i_t) = -(1-\pi(a_{\text{vote},j} | \tau^i_t))^{\gamma_f}\log \pi(a_{\text{vote},j} | \tau^i_t),
+\end{equation}
+
+<p>
+where \(\pi(a_{\text{vote},j} | \tau^i_t)\) is the probability that agent \(i\) correctly votes for the imposter (player \(j\)) after \(t\) timesteps of interaction. We optimize this loss over all <i>belief-querying timesteps</i>, which occurs between each message during the discussion phase.<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb0a63e3" class="outline-4">
+<h4 id="orgb0a63e3">Speaking</h4>
+<div class="outline-text-4" id="text-orgb0a63e3">
+<p>
+We want crewmates to influence each other to correctly vote against the imposter. Specifically, let \(B_t\) be the sum of all living crewmates' beliefs in the correct imposter at time \(t\):<br />
+</p>
+
+\begin{equation}
+B_t = \sum_{k \in C_t} \pi^j(a_{\text{vote},j} | \tau^k_t).
+\end{equation}
+
+<p>
+Then, we reward the currently speaking crewmate \(r^s_t\):<br />
+</p>
+\begin{equation}
+    r^s_t = B_t - B_{t'},
+\end{equation}
+<p>
+where \(t'\) was the previous <i>belief-querying timestep</i>. This reward incentivizes messages that make other crewmates more confident regarding the identity of the imposter.<br />
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org3cfb152" class="outline-3">
+<h3 id="org3cfb152">Results</h3>
+<div class="outline-text-3" id="text-org3cfb152">
+
+<div id="orga064c15" class="figure">
+<p><img src="./imgs/base_env_figure.jpg" alt="base_env_figure.jpg" width="50%" class="marginauto" /><br />
+</p>
+</div>
+
+<p>
+Relative to our baselines of pure RL (\(\pi_{RL}\)) and just listening (\(\pi_{L}\)), we find that incorporating listening (\(\pi_{RL+L}\)) and speaking (\(\pi_{RL+L+S}\)) significantly improves the win rate of crewmates.<br />
+</p>
+
+<p>
+Below, we share example generations from our \(\pi_{RL+L+S}\). All samples are from the perspective of the imposter.<br />
+</p>
+</div>
+
+<div id="outline-container-org16b1cac" class="outline-4">
+<h4 id="org16b1cac">Sample 1</h4>
+<div class="outline-text-4" id="text-org16b1cac">
+<p>
+Through the discussion, Player 1 learns that Player 3 was the imposter.<br />
+</p>
+<pre class="example" id="org807d48e">
+World (to all): Player 1 discovered the dead body of Player 0 in room (0,0). 
+Player 2 (to all): "I'm not assigning to you! You're an imposter." 
+Player 3 (you) saying: " I don't see anything suspicious, you are probably 
+                         not telling the truth." 
+Player 1 (to all): " I think it's possibilty that the imposter is R." 
+Player 4 (to all): " May I have the body of Player 3?" 
+Player 2 (to all): " Utterances on everyone except Player 3." 
+Player 3 (you) saying: " I don't have to contribute to the discussion." 
+Player 1 (to all): " I believe Player 3 is a fraud because they are not 
+                     answering anyone's questions." 
+Player 4 (to all): " Take Player 3 out of the room." 
+Player 3 was voted out. Crewmates win!
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9380057" class="outline-4">
+<h4 id="org9380057">Sample 2</h4>
+<div class="outline-text-4" id="text-org9380057">
+<p>
+Player 4 is identified as the imposter in the first message. Player 2 states that Player 4 is not the imposter but still votes against player 4, indicating that mentioning a name increases suspicion among the crewmates, even when associated with a positive message.<br />
+</p>
+<pre class="example" id="org894396b">
+World (to all): Player 1 discovered the dead body of Player 3 in room (1,0).
+Player 0 (to all): " Bones, Player 4 is a impostor!"
+Player 1 (to all): " The next Player in line is Player 0." 
+Player 4 (you) saying: " I see no other Crewmates in this room. I have not 
+                         been able to notice any suspicious 
+Player 2 (to all): " Both Player 4 and Player 0 are not the impostor." 
+Player 0 (to all): " I don't know which Player is the imposter." 
+Player 1 (to all): " I am not a imposter." 
+Player 4 (you) saying: " T go east." 
+Player 2 (to all): " Player 4." 
+Player 4 was voted out. Crewmates win!
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org791521a" class="outline-4">
+<h4 id="org791521a">Sample 3</h4>
+<div class="outline-text-4" id="text-org791521a">
+<p>
+Crewmates sometimes incorrectly accuse other crewmates.<br />
+</p>
+<pre class="example" id="orgf4e5d1e">
+World (to all): Player 4 discovered the dead body of Player 2 in room (1,0). 
+Player 4 (to all): " I think that Player 0 is the Imposter as he claimed to
+                     have the most knowledge about all 
+Player 3 (to all): " Read all messages sent by Player 1 during this period 
+                     of gameplay." 
+Player 1 (you) saying: " U wait at least 6 seconds before you can kill 
+                    again." 
+Player 0 (to all): "You are the Imposter. You have the following to say: 
+                    ' I don't know.' 
+Player 4 (to all): " I don't know. I have nothing." 
+Player 3 (to all): " The following are my most suspicious of you: Player 0." 
+Player 1 (you) saying: " S go east." 
+Player 0 (to all): " I don't know." 
+Player 0 received 3 votes, Player 1 received 1 votes. Therefore, Player 0 
+    is ejected this round. 
+</pre>
+
+
+</div>
+</div>
+
+</div></div></div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <!-- <h3> -->
+      <!--     Acknowledgements -->
+      <!-- </h3> -->
+    <p class="text-justify">
+      <br><br>
+      The website template was borrowed from <a href="http://jonbarron.info/">Jon Barron</a>
+    </p>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
