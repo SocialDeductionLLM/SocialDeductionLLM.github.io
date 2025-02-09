@@ -8,6 +8,8 @@
 #+startup: inlineimages
 #+EXPORT_FILE_NAME: index
 
+#+HTML_HEAD: <link rel="icon" type="image/x-icon" href="imgs/favicon.ico">
+
 #+PROPERTY:  header-args :eval never-export
 
 #+INCLUDE: "header.org"
