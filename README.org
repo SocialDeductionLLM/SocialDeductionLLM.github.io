@@ -35,7 +35,7 @@
 
 #+html: <div class="row"> <div class="col-md-4 col-md-offset-4 text-center">
 #+attr_html: :class nav nav-pills nav-justified
-- @@html:<a href="https://doi.org/10.25740/fr666rz8034"><image src="imgs/paper_front.jpg" height="60px"><h4><strong>Paper</strong></h4></a>@@
+- @@html:<a href="imgs/SocialDeductionPaper.pdf"><image src="imgs/paper_front.jpg" height="60px"><h4><strong>Paper</strong></h4></a>@@
 - @@html:<a href="https://huggingface.co/collections/bidiptas/social-deduction-llm-aamas-2025-678e24d75e32f9134511125f"><image src="imgs/huggingface.svg" height="60px"><h4><strong>Models</strong></h4></a>@@
 - @@html:<a href="https://github.com/SocialDeductionLLM/SocialDeductionLLM"><image src="imgs/GitHub-Mark.png" height="60px"><h4><strong>Code</strong></h4></a>@@
 #+html: </div></div>

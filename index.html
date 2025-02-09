@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-02-09 Sun 14:22 -->
+<!-- 2025-02-09 Sun 23:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Training Language Models for Social Deduction with Multi-Agent Reinforcement Learning</title>
@@ -85,7 +85,7 @@
 
 <div class="row"> <div class="col-md-4 col-md-offset-4 text-center">
 <ul class="org-ul nav nav-pills nav-justified">
-<li><a href="https://doi.org/10.25740/fr666rz8034"><image src="imgs/paper_front.jpg" height="60px"><h4><strong>Paper</strong></h4></a><br /></li>
+<li><a href="imgs/SocialDeductionPaper.pdf"><image src="imgs/paper_front.jpg" height="60px"><h4><strong>Paper</strong></h4></a><br /></li>
 <li><a href="https://huggingface.co/collections/bidiptas/social-deduction-llm-aamas-2025-678e24d75e32f9134511125f"><image src="imgs/huggingface.svg" height="60px"><h4><strong>Models</strong></h4></a><br /></li>
 <li><a href="https://github.com/SocialDeductionLLM/SocialDeductionLLM"><image src="imgs/GitHub-Mark.png" height="60px"><h4><strong>Code</strong></h4></a><br /></li>
 </ul>
@@ -96,23 +96,23 @@
 <p>
 <video width="100%" autoplay loop muted> <source src="imgs/Amongus.mp4" type="video/mp4"> </video><br />
 </p>
-<div id="outline-container-orge8857d4" class="outline-2">
-<h2 id="orge8857d4"></h2>
-<div class="outline-text-2" id="text-orge8857d4">
+<div id="outline-container-orgcd1be4f" class="outline-2">
+<h2 id="orgcd1be4f"></h2>
+<div class="outline-text-2" id="text-orgcd1be4f">
 </div>
-<div id="outline-container-orgf2a1811" class="outline-3">
-<h3 id="orgf2a1811">Abstract</h3>
-<div class="outline-text-3" id="text-orgf2a1811">
+<div id="outline-container-orge8420fc" class="outline-3">
+<h3 id="orge8420fc">Abstract</h3>
+<div class="outline-text-3" id="text-orge8420fc">
 <p>
 Communicating in natural language is a powerful tool in multi-agent settings, as it enables independent agents to share information in partially observable settings and allows zero-shot coordination with humans. However, most prior works are limited as they either rely on training with large amounts of human demonstrations or lack the ability to generate natural and useful communication strategies. In this work, we train language models to have productive discussions about their environment in natural language without any human demonstrations. We decompose the communication problem into <i>listening</i> and <i>speaking</i>. Our key idea is to leverage the agent's goal to <i>predict useful information about the world</i> as a dense reward signal that guides the communication. Specifically, we improve a model's listening skills by training them to predict information about the environment based on discussions, and we simultaneously improve a model's speaking skills with multi-agent reinforcement learning by rewarding messages based on their influence on other agents. To investigate the role and necessity of communication in complex social settings, we study an embodied social deduction game based on Among Us, where the key question to answer is the identity of an adversarial imposter. We analyze emergent behaviors due to our technique, such as accusing suspects and providing evidence, and find that it enables strong discussions, doubling the win rates compared to standard RL.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org65bdca2" class="outline-3">
-<h3 id="org65bdca2">Among Us Environment</h3>
-<div class="outline-text-3" id="text-org65bdca2">
+<div id="outline-container-org6e2c2f8" class="outline-3">
+<h3 id="org6e2c2f8">Among Us Environment</h3>
+<div class="outline-text-3" id="text-org6e2c2f8">
 
-<div id="orgeca1de9" class="figure">
+<div id="org971c5e2" class="figure">
 <p><img src="./imgs/AmongUsDiagrams.png" alt="AmongUsDiagrams.png" width="100%" /><br />
 </p>
 </div>
@@ -122,16 +122,16 @@ To investigate a challenging and grounded social deduction game, we implement a 
 </p>
 </div>
 </div>
-<div id="outline-container-org4bdbb2d" class="outline-3">
-<h3 id="org4bdbb2d">Our Technique</h3>
-<div class="outline-text-3" id="text-org4bdbb2d">
+<div id="outline-container-orgee73f69" class="outline-3">
+<h3 id="orgee73f69">Our Technique</h3>
+<div class="outline-text-3" id="text-orgee73f69">
 <p>
 We train crewmates to improve their discussion abilities. To do so, we decompose discussions into two components: listening and speaking.<br />
 </p>
 </div>
-<div id="outline-container-org0818c3f" class="outline-4">
-<h4 id="org0818c3f">Listening</h4>
-<div class="outline-text-4" id="text-org0818c3f">
+<div id="outline-container-org53d8fed" class="outline-4">
+<h4 id="org53d8fed">Listening</h4>
+<div class="outline-text-4" id="text-org53d8fed">
 <p>
 We want crewmates to be able to accurately predict the identity of the imposter given prior messages and interactions with the environment. Therefore, we minimize the following loss to improve listening:<br />
 </p>
@@ -145,9 +145,9 @@ where \(\pi(a_{\text{vote},j} | \tau^i_t)\) is the probability that agent \(i\) 
 </p>
 </div>
 </div>
-<div id="outline-container-org532961a" class="outline-4">
-<h4 id="org532961a">Speaking</h4>
-<div class="outline-text-4" id="text-org532961a">
+<div id="outline-container-orga436240" class="outline-4">
+<h4 id="orga436240">Speaking</h4>
+<div class="outline-text-4" id="text-orga436240">
 <p>
 We want crewmates to influence each other to correctly vote against the imposter. Specifically, let \(B_t\) be the sum of all living crewmates' beliefs in the correct imposter at time \(t\):<br />
 </p>
@@ -168,11 +168,11 @@ where \(t'\) was the previous <i>belief-querying timestep</i>. This reward incen
 </div>
 </div>
 </div>
-<div id="outline-container-org77752f2" class="outline-3">
-<h3 id="org77752f2">Results</h3>
-<div class="outline-text-3" id="text-org77752f2">
+<div id="outline-container-orgc0e70fa" class="outline-3">
+<h3 id="orgc0e70fa">Results</h3>
+<div class="outline-text-3" id="text-orgc0e70fa">
 
-<div id="orgafa631f" class="figure">
+<div id="orgc77a318" class="figure">
 <p><img src="./imgs/base_env_figure.png" alt="base_env_figure.png" width="50%" class="marginauto" /><br />
 </p>
 </div>
@@ -185,13 +185,13 @@ Relative to our baselines of pure RL (\(\pi_{RL}\)) and just listening (\(\pi_{L
 Below, we share example generations from our \(\pi_{RL+L+S}\). All samples are from the perspective of the imposter.<br />
 </p>
 </div>
-<div id="outline-container-org8c29004" class="outline-4">
-<h4 id="org8c29004">Sample 1</h4>
-<div class="outline-text-4" id="text-org8c29004">
+<div id="outline-container-orgfa8354a" class="outline-4">
+<h4 id="orgfa8354a">Sample 1</h4>
+<div class="outline-text-4" id="text-orgfa8354a">
 <p>
 Through the discussion, Player Pink learns that Player Blue is the imposter.<br />
 </p>
-<pre class="example" id="orgee8d530">
+<pre class="example" id="orga168056">
 World (to all): Player Yellow discovered the dead body of Player Purple in room (0,0).
 Player Blue (you) saying: "There's no way I'm playing this game."
 Player Yellow (to all): "Only the Imposter will speak."
@@ -208,13 +208,13 @@ Player Blue was voted out. Crewmates win!
 </pre>
 </div>
 </div>
-<div id="outline-container-org94329d0" class="outline-4">
-<h4 id="org94329d0">Sample 2</h4>
-<div class="outline-text-4" id="text-org94329d0">
+<div id="outline-container-org382d547" class="outline-4">
+<h4 id="org382d547">Sample 2</h4>
+<div class="outline-text-4" id="text-org382d547">
 <p>
 Other players directly accuse Player Green.<br />
 </p>
-<pre class="example" id="orga59b92d">
+<pre class="example" id="org4030a4a">
 World (to all): Player Purple discovered the dead body of Player Yellow in room (2,0).
 Player Orange (to all): "The Imposter is Player Green."
 Player Green (you) saying: "Shut Up!"
@@ -226,13 +226,13 @@ Player Green was voted out. Crewmates win!
 </pre>
 </div>
 </div>
-<div id="outline-container-org319cf26" class="outline-4">
-<h4 id="org319cf26">Sample 3</h4>
-<div class="outline-text-4" id="text-org319cf26">
+<div id="outline-container-orgc8cfe47" class="outline-4">
+<h4 id="orgc8cfe47">Sample 3</h4>
+<div class="outline-text-4" id="text-orgc8cfe47">
 <p>
 Player Pink, the imposter, convinces the other crewmate to vote out the innocent Player Orange.<br />
 </p>
-<pre class="example" id="org45654bc">
+<pre class="example" id="org6fc67d6">
 World (to all): Player Purple discovered the dead body of Player Red in room (1,0).
 Player Orange (to all): "I've been playing as a Player Pink since the beginning, because of
                          that, I know that
