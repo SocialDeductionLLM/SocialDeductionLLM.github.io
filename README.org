@@ -40,6 +40,7 @@
 - @@html:<a href="imgs/SocialDeductionPaper.pdf"><image src="imgs/paper_front.jpg" height="60px"><h4><strong>Paper</strong></h4></a>@@
 - @@html:<a href="https://huggingface.co/collections/bidiptas/social-deduction-llm-aamas-2025-678e24d75e32f9134511125f"><image src="imgs/huggingface.svg" height="60px"><h4><strong>Models</strong></h4></a>@@
 - @@html:<a href="https://github.com/SocialDeductionLLM/SocialDeductionLLM"><image src="imgs/GitHub-Mark.png" height="60px"><h4><strong>Code</strong></h4></a>@@
+- @@html:<a href="https://www.alphaxiv.org/abs/2502.06060"><image src="https://static.alphaxiv.org/logos/alphaxiv_logo.png" height=60px><h4><strong>Discussion</strong></h4></a>@@
 #+html: </div></div>
 
 #+html: <div class="row"> <div class="col-md-8 col-md-offset-2">
@@ -93,6 +94,8 @@ where $t'$ was the previous /belief-querying timestep/. This reward incentivizes
 
 #+ATTR_HTML: :width 50% :class marginauto
 [[./imgs/base_env_figure.png]]
+
+We initialize our agents from the RWKV 4 World 1.5B model since it enables unbounded context fine-tuning and takes constant time and space to generate actions, regardless of context length, making it ideal for MARL research.
 
 Relative to our baselines of pure RL ($\pi_{RL}$) and just listening ($\pi_{L}$), we find that incorporating listening ($\pi_{RL+L}$) and speaking ($\pi_{RL+L+S}$) significantly improves the win rate of crewmates.
 
