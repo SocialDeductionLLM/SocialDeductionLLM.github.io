@@ -166,10 +166,18 @@ World (to all): There are currently more imposters than crewmates. Imposters win
             </h3>
             <div class="form-group col-md-10 col-md-offset-1">
               <textarea id="bibtex" class="form-control" readonly>@inproceedings{sarkar2025training,
-	title={Training Language Models for Social Deduction with Multi-Agent Reinforcement Learning},
-	author={Bidipta Sarkar and Warren Xia and C. Karen Liu and Dorsa Sadigh},
-	booktitle={Proceedings of the 24th International Conference on Autonomous Agents and Multiagent Systems},
-	year={2025}
+    author = {Sarkar, Bidipta and Xia, Warren and Liu, C. Karen and Sadigh, Dorsa},
+    title = {Training Language Models for Social Deduction with Multi-Agent Reinforcement Learning},
+    year = {2025},
+    isbn = {9798400714269},
+    publisher = {International Foundation for Autonomous Agents and Multiagent Systems},
+    address = {Richland, SC},
+    booktitle = {Proceedings of the 24th International Conference on Autonomous Agents and Multiagent Systems},
+    pages = {1830–1839},
+    numpages = {10},
+    keywords = {LLM agents, language models, multi-agent reinforcement learning, social deduction},
+    location = {Detroit, MI, USA},
+    series = {AAMAS '25}
 }</textarea>
             </div>
 	  </div>
